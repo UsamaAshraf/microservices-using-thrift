@@ -1,0 +1,21 @@
+version: "3.2"
+services:
+    client:
+        build: ./python-service
+        depends_on:
+          - server
+        tty: true
+        ports:
+            - "3000:3000"
+        volumes:
+          - './python-service:/theclient'
+
+    server:
+        build: ./go-service
+        tty: true
+        volumes:
+          - './go-service:/theserver'
+
+volumes:
+  python-service:
+  go-service:
